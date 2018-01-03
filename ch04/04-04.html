@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>04-04</title>
-  <style>
-   html, body { margin: 0;padding: 0; }
-   #example {
-    height: 98vh; min-height: 100%; padding:5px
-   }
-  </style>
-  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
-</head>
-<body>
-<div id="example" v-on:contextmenu.prevent="ctxStop">
-    <a href="https://facebook.com" @click="confirmFB">페이스북</a>
-</div>
-<script type="text/javascript">
-var vm = new Vue({
-    el : "#example",
-    methods: {
-        ctxStop : function(e) {
 
-        },
-        confirmFB : function(e) {
-            if (!confirm("페이스북으로 이동할까요?")) {
-                e.preventDefault();
-            }
+<head>
+    <meta charset="utf-8">
+    <title>04-04</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
         }
-    }
-})
-</script>
+        
+        #example {
+            height: 98vh;
+            min-height: 100%;
+            padding: 5px
+        }
+    </style>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <!-- v-on:contextmenu.prevent="ctxStop" -> 오른쪽 클릭 시 디폴트 메뉴가 표시되는 것을 방지 -->
+    <div id="example" v-on:contextmenu.prevent="ctxStop">
+        <!-- click 이벤트 발생 시 confirmFB 함수를 실행 시킴 -->
+        <a href="https://facebook.com" @click="confirmFB">페이스북</a>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#example",
+            methods: {
+                ctxStop: function(e) {
+
+                },
+                // confirm 창을 발생 시켜 이동 여부를 입력 받음. 
+                // 이때 event 객체는 호출부에서 따로 넘겨주지 않아도 기본적으로 전달 받을 수 있음.
+                confirmFB: function(e) {
+                    if (!confirm("페이스북으로 이동할까요?")) {
+                        // preventDefault() 함수를 통해 이벤트를 취소처리
+                        e.preventDefault();
+                    }
+                }
+            }
+        })
+    </script>
 </body>
+
 </html>
