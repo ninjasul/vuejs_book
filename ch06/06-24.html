@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>06-24</title>
-    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>  
+    <script src="vue.js"></script>
 </head>
 <!-- 이벤트 버스 객체 -->
 <script type="text/javascript">
-var eventBus = new Vue();
+    var eventBus = new Vue();
 </script>
 <!-- 첫번째 자식 컴포넌트 시작-->
 <template id="chidl1Template">
@@ -17,20 +18,23 @@ var eventBus = new Vue();
     </div>
 </template>
 <script type="text/javascript">
-Vue.component('child1-component', {
-    template : '#chidl1Template',
-    data : function() {
-        return { currentTime : '' };
-    },
-    methods : {
-        clickEvent : function() {
-            var d = new Date();
-            var t = d.toLocaleTimeString() + " " + d.getMilliseconds() + "ms";
-            eventBus.$emit('click1', t);
-            this.currentTime = t;
+    Vue.component('child1-component', {
+        template: '#chidl1Template',
+        data: function() {
+            return {
+                currentTime: ''
+            };
+        },
+        methods: {
+            // 클릭 시 이벤트 버스 객체를 이용하여 이벤트를 전송
+            clickEvent: function() {
+                var d = new Date();
+                var t = d.toLocaleTimeString() + " " + d.getMilliseconds() + "ms";
+                eventBus.$emit('click1', t);
+                this.currentTime = t;
+            }
         }
-    }
-});
+    });
 </script>
 <!-- 첫번째 자식 컴포넌트 끝-->
 <!-- 두번째 자식 컴포넌트 시작-->
@@ -40,24 +44,26 @@ Vue.component('child1-component', {
     </ul>
 </template>
 <script type="text/javascript">
-Vue.component('child2-component', {
-    template : '#chidl2Template',
-    data : function() {
-        return { 
-            timelist : []
-        };
-    },
-    created : function() {
-        eventBus.$on('click1', this.child1Click);
-    },
-    methods : {
-        child1Click : function(time) {
-            this.timelist.push(time);
+    Vue.component('child2-component', {
+        template: '#chidl2Template',
+        data: function() {
+            return {
+                timelist: []
+            };
+        },
+        // 생성 시 :$on 을 통해 이벤트 버스 객체와 이벤트를 바인딩 처리함.
+        created: function() {
+            eventBus.$on('click1', this.child1Click);
+        },
+        methods: {
+            child1Click: function(time) {
+                this.timelist.push(time);
+            }
         }
-    }
-});
+    });
 </script>
 <!-- 두번째 자식 컴포넌트 끝-->
+
 <body>
     <div id="app">
         <child1-component></child1-component>
@@ -66,9 +72,10 @@ Vue.component('child2-component', {
     </div>
 </body>
 <script type="text/javascript">
-Vue.config.devtools = true;
-var vm = new Vue({
-    el : "#app"
-})
+    Vue.config.devtools = true;
+    var vm = new Vue({
+        el: "#app"
+    })
 </script>
+
 </html>

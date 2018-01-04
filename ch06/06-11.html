@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>06-11</title>
-  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <meta charset="utf-8">
+    <title>06-11</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
+<!-- 하나의 data 객체를 두 개의 time-component 에서 동시에 바라보기 때문에 
+    하나만 클릭 하더라도 둘 다 변경 됨 -->
 <template id='timeTemplate'>
     <div>
         <span>{{nowTS}}</span>
@@ -12,19 +15,23 @@
     </div>
 </template>
 <script type="text/javascript">
-var data = { nowTS : 0 };
-Vue.component('time-component', {
-    template : '#timeTemplate',
-    data : function() {
-        return data;
-    },
-    methods : {
-        timeClick : function(e) {
-            this.nowTS = (new Date()).getTime();
+    var data = {
+        nowTS: 0
+    };
+    Vue.component('time-component', {
+        template: '#timeTemplate',
+        // 하나의 정해진 객체만 리턴하게 수정        
+        data: function() {
+            return data;
+        },
+        methods: {
+            timeClick: function(e) {
+                this.nowTS = (new Date()).getTime();
+            }
         }
-    }
-})
+    })
 </script>
+
 <body>
     <div id="app">
         <time-component></time-component>
@@ -32,9 +39,10 @@ Vue.component('time-component', {
     </div>
 </body>
 <script type="text/javascript">
-Vue.config.devtools = true;
-var v = new Vue({
-    el : '#app'
-})
+    Vue.config.devtools = true;
+    var v = new Vue({
+        el: '#app'
+    })
 </script>
+
 </html>

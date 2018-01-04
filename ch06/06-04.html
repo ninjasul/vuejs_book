@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>06-04</title>
-  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <meta charset="utf-8">
+    <title>06-04</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
+<!-- 템플릿 태그를 이용해 참조 가능 -->
 <template id="helloTemplate">
     <div>hello world!!!</div>
 </template>
 <script type="text/javascript">
-  Vue.component('hello-component', {
-    template : '#helloTemplate'
-  })
+    Vue.component('hello-component', {
+        // template 필드에 직접 태그를 입력하는 것이 아니라 템플릿 id를 참조
+        template: '#helloTemplate'
+    })
 </script>
+
 <body>
-  <div id="app">
-    <hello-component></hello-component>
-    <hello-component></hello-component>
-    <hello-component></hello-component>
-  </div>
+    <div id="app">
+        <hello-component></hello-component>
+        <hello-component></hello-component>
+        <hello-component></hello-component>
+    </div>
 </body>
 <script type="text/javascript">
-Vue.config.devtools = true;
-var v = new Vue({
-  el : '#app'
-})
+    Vue.config.devtools = true;
+    var v = new Vue({
+        el: '#app'
+    })
 </script>
+
 </html>

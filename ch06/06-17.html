@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>06-17</title>
-    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="vue.js"></script>
 </head>
 <style>
-#list  { width: 400px; border:1px solid black; border-collapse:collapse; }
-#list td, #list th { border:1px solid black;  text-align:center; }
-#list > thead > tr { color:yellow; background-color: purple; }
+    #list {
+        width: 400px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    
+    #list td,
+    #list th {
+        border: 1px solid black;
+        text-align: center;
+    }
+    
+    #list>thead>tr {
+        color: yellow;
+        background-color: purple;
+    }
 </style>
 <template id="listTemplate">
     <div>
@@ -30,11 +44,12 @@
     </div>
 </template>
 <script type="text/javascript">
-Vue.component('contactlist-component', {
-    template : '#listTemplate',
-    props : [ 'contacts' ]    
-})
+    Vue.component('contactlist-component', {
+        template: '#listTemplate',
+        props: ['contacts']
+    })
 </script>
+
 <body>
     <div id="app">
         <h1>예방 접종</h1>
@@ -46,21 +61,39 @@ Vue.component('contactlist-component', {
     </div>
 </body>
 <script type="text/javascript">
-Vue.config.devtools = true
-var vm = new Vue({
-    el : "#app",
-    data : {
-        list1 : [
-            {"no":97,"name":"Kalisa Rogers","tel":"010-3456-8296","address":"서울시" },
-            {"no":96,"name":"Jesse James","tel":"010-3456-8295","address":"서울시" },
-            {"no":95,"name":"Jennifer Walker","tel":"010-3456-8294","address":"서울시" }
-        ],
-        list2 : [
-            {"no":82,"name":"Zenon Howard","tel":"010-3456-8281","address":"서울시"},
-            {"no":81,"name":"Kylie Allen","tel":"010-3456-8280","address":"서울시"}
-        ]
-    }
-})
-
+    Vue.config.devtools = true
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            list1: [{
+                "no": 97,
+                "name": "Kalisa Rogers",
+                "tel": "010-3456-8296",
+                "address": "서울시"
+            }, {
+                "no": 96,
+                "name": "Jesse James",
+                "tel": "010-3456-8295",
+                "address": "서울시"
+            }, {
+                "no": 95,
+                "name": "Jennifer Walker",
+                "tel": "010-3456-8294",
+                "address": "서울시"
+            }],
+            list2: [{
+                "no": 82,
+                "name": "Zenon Howard",
+                "tel": "010-3456-8281",
+                "address": "서울시"
+            }, {
+                "no": 81,
+                "name": "Kylie Allen",
+                "tel": "010-3456-8280",
+                "address": "서울시"
+            }]
+        }
+    })
 </script>
+
 </html>

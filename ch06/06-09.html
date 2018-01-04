@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>06-09</title>
-  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <meta charset="utf-8">
+    <title>06-09</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <template id='timeTemplate'>
     <div>
@@ -12,16 +13,25 @@
     </div>
 </template>
 <script type="text/javascript">
-  Vue.component('time-component', {
-    template : '#timeTemplate',
-    data : { nowTS : 0 },
-    methods : {
-        timeClick : function(e) {
-            this.nowTS = (new Date()).getTime();
+    Vue.component('time-component', {
+        template: '#timeTemplate',
+        // 컴포넌트 사용 시 data 필드는 일반 객체가 아니라 함수에서 객체를 리턴 하는 방식으로 변경해야 함.
+        // data: {
+        //     nowTS: 0
+        // },
+        data: function() {
+            return {
+                nowTS: 0
+            };
+        },
+        methods: {
+            timeClick: function(e) {
+                this.nowTS = (new Date()).getTime();
+            }
         }
-    }
-  })
+    })
 </script>
+
 <body>
     <div id="app">
         <time-component></time-component>
@@ -29,9 +39,10 @@
     </div>
 </body>
 <script type="text/javascript">
-Vue.config.devtools = true;
-var v = new Vue({
-    el : '#app'
-})
+    Vue.config.devtools = true;
+    var v = new Vue({
+        el: '#app'
+    })
 </script>
+
 </html>
